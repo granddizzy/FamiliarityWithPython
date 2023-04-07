@@ -10,7 +10,6 @@ while (True):
 
 sumNumbers = int(str[0]) + int(str[1]) + int(str[2])
 
-print(f"Сумма цифр числа {str} равна {sumNumbers}")
-
+print(f"Сумма цифр числа {str} равна {sumNumbers} ({int(str[0])} + {int(str[1])} + {int(str[2])})")
 
 
