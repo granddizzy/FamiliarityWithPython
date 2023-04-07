@@ -4,7 +4,7 @@
 while (True):
     str = input("Введите трехзначное число: ")
 
-    if not str.isdigit() or len(str) > 3 or len(str) < 3:
+    if not str.isdigit() or len(str) != 3:
         print("Не правильно указано число!!!")
     else:
         break
