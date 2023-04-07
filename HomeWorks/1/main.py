@@ -1,5 +1,6 @@
 #task 2
 
+"""
 while (True):
     str = input("Введите трехзначное число: ")
 
@@ -11,7 +12,7 @@ while (True):
 sumNumbers = int(str[0]) + int(str[1]) + int(str[2])
 
 print(f"Сумма цифр числа {str} равна {sumNumbers} ({int(str[0])} + {int(str[1])} + {int(str[2])})")
-
+"""
 
 #task 4
 
@@ -37,12 +38,14 @@ else:
 
 """
 while (True):
-    num = int(input("Введите 6 значный номер билета:"))
+    str = input("Введите 6 значный номер билета:")
 
-    if num < 0 or num > 999999 or num < 100000:
+    if not str.isdigit() or len(str) != 6:
         print("Не правильно указан номер!!!")
     else:
         break
+
+num = int(str)
 
 sumLleft = num // 100000 + (num // 10000 - num // 100000 * 10) + (num // 1000 - num // 10000 * 10)
 sumRight = num % 10 + (num % 100 // 10) + (num % 1000 // 100)
