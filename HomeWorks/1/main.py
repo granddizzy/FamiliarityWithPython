@@ -16,6 +16,7 @@ print(f"Сумма цифр числа {str} равна {sumNumbers} ({int(str[0
 
 #task 4
 
+"""
 s = int(input("Введите общее число журавликов: "))
 
 # petr = x
@@ -31,3 +32,22 @@ else:
     print (f"Петя сделал: {x}")
     print (f"Сережа сделал: {x}")
     print (f"Катя сделала: {4*x}")
+"""
+
+# task 6
+
+while (True):
+    num = int(input("Введите 6 значный номер билета:"))
+
+    if num < 0 or num > 999999 or num < 100000:
+        print("Не правильно указан номер!!!")
+    else:
+        break
+
+sumLleft = num // 100000 + (num // 10000 - num // 100000 * 10) + (num // 1000 - num // 10000 * 10)
+sumRight = num % 10 + (num % 100 // 10) + (num % 1000 // 100)
+
+if sumLleft == sumRight:
+    print("Это число СЧАСТЛИВОЕ!!!")
+else:
+    print("Это не счастливое число.")
