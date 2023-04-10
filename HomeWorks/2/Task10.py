@@ -4,8 +4,10 @@
 
 from random import randint
 
-n = int(input("Введите количество монеток n:"))
+n = int(input("Введите количество монеток n: "))
 
-сoins  = [randint(0, 1) for i in range(n)]
+coins = [randint(0, 1) for i in range(n)]
 
-print(сoins)
+print (coins)
+
+print(f"Минимальное количество монеток которое нужно перевернуть {coins.count(0) if coins.count(0) <= coins.count(1) else coins.count(1)}")
