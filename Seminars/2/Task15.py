@@ -18,14 +18,20 @@ numberMaxWeight = 0
 numberMinWeight = 0
 
 for i in range(1, n+1):
-    m = int(input(f"Введите массу арбуза номер {i}"))
+    m = int(input(f"Введите массу арбуза номер {i}: "))
 
-    if m > maxWeight:
+    if i == 1:
+        minWeight = m
+        numberMinWeight = 1
+
+        maxWeight = m
+        numberMaxWeight = 1
+    elif m > maxWeight:
         maxWeight = m
         numberMaxWeight = i
     elif m < minWeight:
         minWeight = m
         numberMinWeight = i
 
-print(f"Арбуз для себя номер {numberMaxWeight} c весом {maxWeight}")
-print(f"Арбуз для тещи номер {numberMinWeight} c весом {minWeight}")
+print(f"Арбуз для себя номер {numberMaxWeight} c массой {maxWeight}")
+print(f"Арбуз для тещи номер {numberMinWeight} c массой {minWeight}")
