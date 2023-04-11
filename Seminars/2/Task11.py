@@ -15,20 +15,20 @@ if a == 0:
 elif a == 1:
     pos = 2
 else:
-    currentNumber = 1
-    previousNumber = 1
+    current_number = 1
+    previous_number = 1
     pos = 3
 
-    while a >= currentNumber:
-        nextNumber = currentNumber + previousNumber
+    while a >= current_number:
+        nextNumber = current_number + previous_number
 
         pos += 1
 
         if nextNumber == a:
             break
 
-        previousNumber = currentNumber
-        currentNumber = nextNumber
+        previous_number = current_number
+        current_number = nextNumber
     else:
         pos = -1
 

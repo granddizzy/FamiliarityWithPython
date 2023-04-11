@@ -15,20 +15,27 @@
 # соответствующий день. Температуры – целые числа и лежат в
 # диапазоне от –50 до 50
 
-n = int(input("ведите количество рассматриваемых дней 1 ≤ N ≤ 100: "))
+import random
 
-maxThawDurationsDays = 0
-currentThawDurationsDays = 0
+days = int(input("ведите количество рассматриваемых дней 1 ≤ N ≤ 100: "))
 
-for i in range(1, n+1):
-    averageDailyTemperature = int(input(f"Введите среднесуточную температуру в день номер {i}: "))
+max_thaw_durations_days = 0
+current_thaw_durations_days = 0
+average_daily_temperature = 0
 
-    if averageDailyTemperature > 0:
-        currentThawDurationsDays += 1
+for i in range(1, days+1):
+    # averageDailyTemperature = int(input(f"Введите среднесуточную температуру в день номер {i}: "))
+
+    average_daily_temperature += random.randint(-3, 3)
+
+    print(average_daily_temperature, end=" ")
+
+    if average_daily_temperature > 0:
+        current_thaw_durations_days += 1
     else:
-        currentThawDurationsDays = 0
+        current_thaw_durations_days = 0
 
-    if currentThawDurationsDays > maxThawDurationsDays:
-        maxThawDurationsDays = currentThawDurationsDays
+    if current_thaw_durations_days > max_thaw_durations_days:
+        max_thaw_durations_days = current_thaw_durations_days
 
-print(f"Длительность максимальной оттепели за данный период составляет {maxThawDurationsDays} дней")
+print(f"\nДлительность максимальной оттепели за данный период составляет {max_thaw_durations_days} дней")

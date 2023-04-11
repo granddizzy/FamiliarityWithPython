@@ -3,14 +3,11 @@
 # значение n!. N! = 1 * 2 * 3 * … * N (произведение всех
 # чисел от 1 до N) 0! = 1 Решить задачу используя цикл while
 
-n = int(input("Введите число: "))
-factorial = 5
+number = int(input("Введите число: "))
+factorial = 1
 
-if n > 0:
-    while n > 1:
-        factorial = factorial * (n - 1)
-        n -= 1
-else:
-    factorial = 1
+while number > 1:
+    factorial *= number
+    number -= 1
 
 print(f"Факториал этого числа равен {factorial}")

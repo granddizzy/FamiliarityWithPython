@@ -10,28 +10,34 @@
 # записанных на новой строчке каждое. Здесь каждое
 # число – это масса соответствующего арбуза
 
+import random
+
 n = int(input("Введите количество арбузов: "))
 
-maxWeight = 0
+max_weight = 0
 minWeight = 0
 numberMaxWeight = 0
 numberMinWeight = 0
 
 for i in range(1, n+1):
-    m = int(input(f"Введите массу арбуза номер {i}: "))
+    # m = int(input(f"Введите массу арбуза номер {i}: "))
+
+    m = random.randint(1, 30000)
+
+    print(m, end=" ")
 
     if i == 1:
         minWeight = m
         numberMinWeight = 1
 
-        maxWeight = m
+        max_weight = m
         numberMaxWeight = 1
-    elif m > maxWeight:
-        maxWeight = m
+    elif m > max_weight:
+        max_weight = m
         numberMaxWeight = i
     elif m < minWeight:
         minWeight = m
         numberMinWeight = i
 
-print(f"Арбуз для себя номер {numberMaxWeight} c массой {maxWeight}")
+print(f"Арбуз для себя номер {numberMaxWeight} c массой {max_weight}")
 print(f"Арбуз для тещи номер {numberMinWeight} c массой {minWeight}")
