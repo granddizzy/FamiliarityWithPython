@@ -45,8 +45,7 @@ while int_number > 0:
 
     if count_dozens == 1:
         last_digit = int_number % 10
-
-    if count_dozens > 1 and int_number // 10 != 0:
+    elif int_number // 10 != 0:
         center_number = int_number % 10 * 10 ** (count_dozens - 2) + center_number
 
     first_digit = int_number
