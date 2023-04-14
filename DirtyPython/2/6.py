@@ -19,7 +19,7 @@ while flag:
 
     if input_str:
         if not first_num:
-            if input_str.count(".") > 1 or input_str.count("-") > 1 or input_str.find(".") == len(input_str)-1:
+            if input_str.count(".") > 1 or input_str.count("-") > 1 or input_str.find(".") == len(input_str) - 1:
                 print("И как это понять ?")
             else:
                 i = 0
@@ -45,22 +45,25 @@ while flag:
                     oper = input_str
                     text = "Введите второе число"
         elif not second_num:
-            if oper == "/" and len(input_str) == 1 and input_str == "0":
-                print("0? Издеваешься ? За тобой уже выехали !!!")
+            if input_str.count(".") > 1 or input_str.count("-") > 1 or input_str.find(".") == len(input_str) - 1:
+                print("И как это понять ?")
             else:
-                if input_str.count(".") > 1 or input_str.count("-") > 1 or input_str.find(".") == len(input_str)-1:
-                    print("И как это понять ?")
+                i, only_zero = 0, True
+                for symbol in input_str:
+                    if not symbol.isdigit():
+                        if (i == 0 and symbol != "-" and symbol != ".") or (i > 0 and symbol != "."):
+                            print("Дурачек что-ли ?")
+                            break
+                    else:
+                        if int(symbol) != 0 and only_zero:
+                            only_zero = False
+                    i += 1
                 else:
-                    i = 0
-                    for symbol in input_str:
-                        if not symbol.isdigit():
-                            if (i == 0 and symbol != "-" and symbol != ".") or (i > 0 and symbol != "."):
-                                print("Дурачек что-ли ?")
-                                break
-                        i += 1
+                    if only_zero:
+                        print("0? Издеваешься ? За тобой уже выехали !!!")
                     else:
                         second_num = input_str
-                    text = "Введите первое число"
+                        text = "Введите первое число"
         else:
             if oper == "+":
                 res = Decimal(first_num) + Decimal(second_num)
