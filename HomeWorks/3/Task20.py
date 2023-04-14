@@ -27,11 +27,11 @@ dict = {"EIOULNSTR": 1, "DG": 2, "BCMP": 3, "FHVWY": 4, "K": 5, "JX": 8, "QZ": 1
 price = 0
 for symbol in word:
     for k, v in dict.items():
-        if k.find(symbol.upper()) != -1:
+        if symbol.upper() in k:
             price += v
-            print (f"{symbol} - {v}")
+            print(f"{symbol} - {v}")
             break
 
 print(f"Ценность слова: {price}")
 
-print(f"Ценность слова: {sum([v for symbol in word for k, v in dict.items() if k.find(symbol.upper()) != -1])}")
+print(f"Ценность слова: {sum([v for symbol in word for k, v in dict.items() if symbol.upper() in k])}")
