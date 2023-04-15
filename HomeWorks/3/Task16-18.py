@@ -33,12 +33,10 @@ num = int(input("Введите число: "))
 count = input_list.count(num)
 
 if not count:
-    min_distance = 0
-
     for number in set(input_list):
         distance = abs(number - num)
 
-        if not min_distance or distance < min_distance:
+        if not 'min_distance' in locals() or distance < min_distance:
             nearest = [number]
             min_distance = distance
         elif distance == min_distance:
