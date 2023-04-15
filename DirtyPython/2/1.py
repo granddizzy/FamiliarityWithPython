@@ -23,20 +23,13 @@
 # No lemon, no melon
 # SATOR AREPO TENET OPERA ROTAS
 
-text = input("Введите строку: ")
-
-# new_text = ""
-# for symbol in text:
-#     if symbol.isalpha():
-#         new_text += symbol
-
-new_text = "".join(symbol for symbol in text if symbol.isalpha())
+text = "".join(symbol for symbol in input("Введите строку: ") if symbol.isalpha())
 
 is_palindrome = False
-lenght = len(new_text)
+lenght = len(text)
 
 for i in range(lenght // 2):
-    if (new_text[i].upper() != new_text[lenght - 1 - i].upper()):
+    if (text[i].upper() != text[lenght - 1 - i].upper()):
         break
 else:
     is_palindrome = True
