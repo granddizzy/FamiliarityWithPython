@@ -25,12 +25,16 @@
 
 text = input("Введите строку: ")
 
+new_text = ""
+for symbol in text:
+    if symbol.isalpha():
+        new_text += symbol
+
 is_palindrome = False
-text = text.replace(" ", "")
-lenght = len(text)
+lenght = len(new_text)
 
 for i in range(lenght // 2):
-    if (text[i].upper() != text[lenght - 1 - i].upper()):
+    if (new_text[i].upper() != new_text[lenght - 1 - i].upper()):
         break
 else:
     is_palindrome = True
