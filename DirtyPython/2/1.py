@@ -25,10 +25,12 @@
 
 text = input("Введите строку: ")
 
-new_text = ""
-for symbol in text:
-    if symbol.isalpha():
-        new_text += symbol
+# new_text = ""
+# for symbol in text:
+#     if symbol.isalpha():
+#         new_text += symbol
+
+new_text = "".join(symbol for symbol in text if symbol.isalpha())
 
 is_palindrome = False
 lenght = len(new_text)
