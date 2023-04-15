@@ -59,7 +59,7 @@ while flag:
                             only_zero = False
                     i += 1
                 else:
-                    if only_zero:
+                    if only_zero and oper == "/":
                         print("0? Издеваешься ? За тобой уже выехали !!!")
                     else:
                         second_num = input_str
