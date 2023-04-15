@@ -26,6 +26,7 @@
 text = input("Введите строку: ")
 
 is_palindrome = False
+text = text.replace(" ", "")
 lenght = len(text)
 
 for i in range(lenght // 2):
