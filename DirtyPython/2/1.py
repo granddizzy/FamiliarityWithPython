@@ -28,10 +28,13 @@ text = "".join(symbol for symbol in input("Введите строку: ") if sy
 is_palindrome = False
 lenght = len(text)
 
-for i in range(lenght // 2):
-    if (text[i].upper() != text[lenght - 1 - i].upper()):
-        break
-else:
+# for i in range(lenght // 2):
+#     if (text[i].upper() != text[lenght - 1 - i].upper()):
+#         break
+# else:
+#     is_palindrome = True
+
+if text == text[::-1]:
     is_palindrome = True
 
 print("Да" if is_palindrome else "Нет")

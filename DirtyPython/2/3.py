@@ -6,10 +6,8 @@
 
 print (" ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z")
 
-x = int(input("Введите X (1 или 0): "))
-y = int(input("Введите Y (1 или 0): "))
-z = int(input("Введите Z (1 или 0): "))
-
-print (f"¬({bool(x)} ⋁ {bool(y)} ⋁ {bool(z)}) = ¬{bool(x)} ⋀ ¬{bool(y)} ⋀ ¬{bool(z)}")
-print(not (x or y or z), "=", not x and not y and not z)
-
+for x in[True, False]:
+    for y in [True, False]:
+        for z in[True, False]:
+            if not (x and y and z) == (not x or not y or not z):
+                print("Условие выполнено")

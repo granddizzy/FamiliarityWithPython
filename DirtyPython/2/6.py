@@ -7,11 +7,11 @@
 #
 # Программа должна завершаться только по желанию пользователя: можно ввести enter и программа закончится, или еще операцию и еще число. Ну и помним, что на ноль делить нельзя.
 
+from decimal import Decimal
+
 flag = True
 first_num, second_num, oper = "", "", ""
 text = "Введите первое число"
-
-from decimal import Decimal
 
 while flag:
     if not first_num or not oper or not second_num:
@@ -38,7 +38,7 @@ while flag:
                 print("И как это понять ?")
             else:
                 for symbol in input_str:
-                    if symbol != "+" and symbol != "-" and symbol != "*" and symbol != "/":
+                    if not (symbol in "+-*/"):
                         print("Дурачек что-ли ?")
                         break
                 else:
@@ -63,7 +63,7 @@ while flag:
                         print("0? Издеваешься ? За тобой уже выехали !!!")
                     else:
                         second_num = input_str
-                        text = "Введите первое число"
+                        text = "Введите операцию (+ - * /)"
         else:
             if oper == "+":
                 res = Decimal(first_num) + Decimal(second_num)
@@ -76,7 +76,8 @@ while flag:
 
             print(f"Результат: {Decimal(first_num)} {oper} {Decimal(second_num)} = {res}")
 
-            first_num, oper, second_num = "", "", ""
+            first_num = res
+            oper, second_num = "", ""
     else:
         flag = False
 else:
