@@ -15,8 +15,7 @@ month_days = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10:
 day_of_the_week = 4  # четверг
 start_date_list = list(map(int, "01.07.1970".split(".")))
 
-# input_date = list(map(int, input("Введите дату DD.MM.YYYY: ").split(".")))
-input_date = "16.04.2023"
+input_date = input("Введите дату DD.MM.YYYY: ")
 input_date_list = list(map(int, input_date.split(".")))
 
 diff_days = 0
