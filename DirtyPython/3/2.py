@@ -2,7 +2,7 @@
 # самое время сделать для восьмиричной и шестнадцатиричной.
 # а лучше сделать универсальный (двоичная, восьмиричная, шеснадцатиричная) и подумать как интереснее оформить "меню" выбора в какую систему переводим:)
 
-def convert(basis, number):
+def convert(basis: int, number: int) -> int:
     number_in_basis = ""
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -14,7 +14,7 @@ def convert(basis, number):
     return number_in_basis
 
 
-number = int(input("Введите число : "))
-basis = int(input("Введите основание системы исчисления в которую хотите перевести (BIN - 2, OCT - 8, HEX - 16): "))
+input_number = int(input("Введите число : "))
+input_basis = int(input("Введите основание системы исчисления в которую хотите перевести (BIN - 2, OCT - 8, HEX - 16): "))
 
-print(f"Число в системе с основанием {basis}: {convert(basis, number)}")
+print(f"Число в системе с основанием {input_basis}: {convert(input_basis, input_number)}")
