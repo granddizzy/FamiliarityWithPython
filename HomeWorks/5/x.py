@@ -40,9 +40,8 @@ def convert_number_in_words(num: int) -> str:
     hundreds = {1: "сто", 2: "двести", 3: "триста", 4: "четыреста", 5: "пятьсот", 6: "шестьсот",
                 7: "семьсот", 8: "восемьсот", 9: "девятьсот"}
 
-    dozens_min = {11: "одиннадцать", 12: "двенадцать", 13: "тринадцать", 14: "четырнадцать", 15: "пятнадцать",
-                  16: "шестнадцать",
-                  17: "семнадцать", 18: "восемнадцать", 19: "девятнадцать"}
+    first_dozen = {11: "одиннадцать", 12: "двенадцать", 13: "тринадцать", 14: "четырнадцать", 15: "пятнадцать",
+                  16: "шестнадцать", 17: "семнадцать", 18: "восемнадцать", 19: "девятнадцать"}
 
     if num == 0:
         return units[num]
@@ -52,7 +51,7 @@ def convert_number_in_words(num: int) -> str:
     length = len(num_list)
 
     # обход классов числа
-    for class_count in range(1, length // 3 + (1 if length % 3 else 1) + 1):
+    for class_count in range(1, length // 3 + (1 if length % 3 else 0) + 1):
         pos2 = length - 3 * (class_count - 1)
         pos1 = pos2 - 3
         num_class = num_list[pos1 if pos1 > 0 else 0: pos2]
@@ -69,7 +68,7 @@ def convert_number_in_words(num: int) -> str:
                                           " " if num_words_class else "") + num_words_class
             elif i == 1 and num_class[-2] != 0:
                 if num_class[-2] == 1 and num_class[-1] > 0:
-                    num_words_class = dozens_min.get(num_class[-2] * 10 + num_class[-1]) + (
+                    num_words_class = first_dozen.get(num_class[-2] * 10 + num_class[-1]) + (
                         " " if num_words_class else "") + num_words_class
                 else:
                     num_words_class = dozens.get(num_class[-2]) + (" " if num_words_class else "") + num_words_class
