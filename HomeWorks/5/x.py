@@ -12,21 +12,17 @@ def get_class_name(class_count: int, number_class: list) -> str:
 
     class_name = name_class_num[class_count]
 
-    len_number_class = len(number_class)
+    class_length = len(number_class)
 
     if class_count == 2:
-        if number_class[len_number_class - 1] == 1 and (
-                len_number_class == 1 or number_class[len_number_class - 2] != 1):
+        if number_class[-1] == 1 and (class_length == 1 or number_class[-2] != 1):
             class_name += "а"
-        elif number_class[len_number_class - 1] in [2, 3, 4] and (
-                len_number_class == 1 or number_class[len_number_class - 2] != 1):
+        elif number_class[-1] in [2, 3, 4] and (class_length == 1 or number_class[-2] != 1):
             class_name += "и"
     elif class_count > 2:
-        if number_class[len_number_class - 1] in [2, 3, 4] and (
-                len_number_class == 1 or number_class[len_number_class - 2] != 1):
+        if number_class[-1] in [2, 3, 4] and (class_length == 1 or number_class[-2] != 1):
             class_name += "а"
-        elif number_class[len_number_class - 1] == 1 and (
-                len_number_class == 1 or number_class[len_number_class - 2] != 1):
+        elif number_class[-1] == 1 and (class_length == 1 or number_class[-2] != 1):
             pass
         else:
             class_name += "ов"
@@ -51,7 +47,7 @@ def convert_number_in_words(num: int) -> str:
     if num == 0:
         return units[num]
 
-    number_in_words = ""
+    num_words = ""
     num_list = list(map(int, str(num)))
     length = len(num_list)
 
@@ -59,36 +55,34 @@ def convert_number_in_words(num: int) -> str:
     for class_count in range(1, length // 3 + (1 if length % 3 else 1) + 1):
         pos2 = length - 3 * (class_count - 1)
         pos1 = pos2 - 3
-        number_class = num_list[pos1 if pos1 > 0 else 0: pos2]
-        len_number_class = len(number_class)
-        number_in_words_class = ""
+        num_class = num_list[pos1 if pos1 > 0 else 0: pos2]
+        class_length = len(num_class)
+        num_words_class = ""
 
         # обход цифр в классе
-        for i in range(len_number_class):
-            if i == 0 and number_class[-1] != 0:
-                if len_number_class == 1 or number_class[-2] != 1:
-                    number_in_words_class = units.get(number_class[-1] + (
-                        10 if class_count == 2 and 2 >= number_class[-1] >= 1 and (
-                                len_number_class == 1 or number_class[-2] != 1) else 0)) + (
-                                                " " if number_in_words_class else "") + number_in_words_class
-            elif i == 1 and number_class[-2] != 0:
-                if number_class[-2] == 1 and number_class[-1] > 0:
-                    number_in_words_class = dozens_min.get(number_class[-2] * 10 + number_class[-1]) + (
-                        " " if number_in_words_class else "") + number_in_words_class
+        for i in range(class_length):
+            if i == 0 and num_class[-1] != 0:
+                if class_length == 1 or num_class[-2] != 1:
+                    num_words_class = units.get(num_class[-1] + (
+                        10 if class_count == 2 and 2 >= num_class[-1] >= 1 and (
+                                class_length == 1 or num_class[-2] != 1) else 0)) + (
+                                          " " if num_words_class else "") + num_words_class
+            elif i == 1 and num_class[-2] != 0:
+                if num_class[-2] == 1 and num_class[-1] > 0:
+                    num_words_class = dozens_min.get(num_class[-2] * 10 + num_class[-1]) + (
+                        " " if num_words_class else "") + num_words_class
                 else:
-                    number_in_words_class = dozens.get(number_class[-2]) + (
-                        " " if number_in_words_class else "") + number_in_words_class
-            elif i == 2 and number_class[-3] != 0:
-                number_in_words_class = hundreds.get(number_class[-3]) + (
-                    " " if number_in_words_class else "") + number_in_words_class
+                    num_words_class = dozens.get(num_class[-2]) + (" " if num_words_class else "") + num_words_class
+            elif i == 2 and num_class[-3] != 0:
+                num_words_class = hundreds.get(num_class[-3]) + (" " if num_words_class else "") + num_words_class
             # else:
             #     pass
 
-        if number_in_words_class:
-            number_in_words = number_in_words_class + (
-                " " + get_class_name(class_count, number_class) + " " if class_count > 1 else "") + number_in_words
+        if num_words_class:
+            num_words = num_words_class + (
+                " " + get_class_name(class_count, num_class) + " " if class_count > 1 else "") + num_words
 
-    return number_in_words
+    return num_words
 
 
 while True:
