@@ -11,7 +11,7 @@ def is_even(num: int) -> bool:
 def is_simple(num: int) -> bool:
     if num in [1, 2]:
         return True
-    for i in range(3, num // 2 + 1, 2):
+    for i in range(3, num // 2 + 1):
         if not num % i:
             return False
     return True
