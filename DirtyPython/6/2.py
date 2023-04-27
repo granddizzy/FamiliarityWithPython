@@ -15,5 +15,4 @@ dict_words = {word: words.count(word) for word in set(words)}
 sorted_tuples = sorted(dict_words.items(), key=lambda el: el[1])
 
 for item in sorted_tuples:
-     print(*item, sep=" - ")
-
+    print(*item, sep=" - ")
