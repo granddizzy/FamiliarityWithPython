@@ -12,7 +12,10 @@ dict_words = {word: words.count(word) for word in set(words)}
 
 # print(max(dict_words, key=lambda k: dict_words[k]))
 
-sorted_tuples = sorted(dict_words.items(), key=lambda el: el[1])
+# sorted_tuples = sorted(dict_words.items(), key=lambda el: el[1])
+# for item in sorted_tuples:
+#     print(*item, sep=" - ")
 
-for item in sorted_tuples:
-    print(*item, sep=" - ")
+sorted_dict = dict(sorted(dict_words.items(), key=lambda el: el[1]))
+for k, v in sorted_dict.items():
+    print(k, "-", v)
