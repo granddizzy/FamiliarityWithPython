@@ -47,7 +47,7 @@ def enc_dec(str_: str, shift_: int, encode: bool = True) -> str:
 
     for sym in str_:
         index_symbol, index_alphabet = get_index(sym)
-        string_ += get_symbol(index_symbol + (shift_ if encode else shift_ * -1),
+        string_ += get_symbol(index_symbol + (shift_ if encode else -shift_),
                               index_alphabet) if index_symbol != -1 else sym
 
     return string_
