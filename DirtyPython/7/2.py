@@ -1,34 +1,23 @@
 # 2. На шахматной доске расположить 8 ферзей так, чтобы они не били друг друга
 # приложить хотя бы один вариант такой расстановки
 
-chessboard_size, queens_max = 9, 9
-chessboard = [[0 for _ in range(chessboard_size)] for _ in range(chessboard_size)]
-full_coordinates_queens = set()
-free_coordinates = [(i, j) for j in range(chessboard_size) for i in range(chessboard_size)]
-
-
-def show_chessboard() -> None:
-    for i in range(len(chessboard)):
-        for j in range(len(chessboard[i])):
-            print(chessboard[i][j], end="\t")
+def show_chessboard(chessboard_: list) -> None:
+    for i in range(len(chessboard_)):
+        for j in range(len(chessboard_[i])):
+            print(chessboard_[i][j], end="\t")
         print()
 
 
-def fill_chessboard(list_coordinates_queen: list) -> None:
+def fill_chessboard(list_coordinates_queen: list, chessboard_: list) -> None:
     for item_ in list_coordinates_queen:
-        chessboard[item_[0]][item_[1]] = 1
+        chessboard_[item_[0]][item_[1]] = 1
 
 
 def del_coordinates(coordinates: tuple, free_coordinates_) -> None:
-    # deleted_coordinates.append(free_coordinates.pop(free_coordinates.index(coordinates)))
     free_coordinates_.pop(free_coordinates_.index(coordinates))
 
 
 def del_busy(coordinates: tuple, free_coordinates_) -> list:
-    # deleted_coordinates = []
-
-    new_free_coordinates = []
-
     del_coordinates(coordinates, free_coordinates_)
 
     # лево
@@ -82,7 +71,15 @@ def set_queens(free_coordinates_: list, queens=None, level: int = 1) -> bool:
     if queens is None:
         queens = []
 
+    if level == 1:
+        count, length = 0, len(free_coordinates_)
+        print(f"Прогресс {chessboard_size}x{chessboard_size} для {queens_max} ферзей: ", end="")
+
     for queen in free_coordinates_:
+        if level == 1:
+            count += 1
+            print(str(100 * count // length), end="% ")
+
         # удаляем занятые ферзем координаты
         new_free_coordinates = del_busy(queen, free_coordinates_.copy())
 
@@ -97,24 +94,33 @@ def set_queens(free_coordinates_: list, queens=None, level: int = 1) -> bool:
 
             # если установили последнего ферзя добавляем вариант в общий список
             if level == queens_max:
-                full_coordinates_queens.add(tuple(sorted(queens)))
+                full_queens.add(tuple(sorted(queens)))
 
             queens.pop()
+    else:
+        if level == 1:
+            print("")
 
 
 def convert_coordinates(coordinates):
     return chr(65 + coordinates[1]) + str(coordinates[0])
 
 
-set_queens(free_coordinates)
+for i in range(8, 15):
+    chessboard_size, queens_max = i, i
+    # chessboard = [[0 for _ in range(chessboard_size)] for _ in range(chessboard_size)]
+    full_queens = set()
+    free_coordinates = [(i, j) for j in range(chessboard_size) for i in range(chessboard_size)]
 
-# i = 0
-with open(str(chessboard_size) + "x" + str(chessboard_size) + ".txt", "w", encoding="UTF-8") as file:
-    for line in full_coordinates_queens:
-        # i += 1
-        # print(i, end="\t", file=file)
-        for item in line:
-            print(convert_coordinates(item), end=" ", file=file)
-        print(file=file)
+    set_queens(free_coordinates)
+
+    # i = 0
+    with open(str(chessboard_size) + "x" + str(chessboard_size) + ".txt", "w", encoding="UTF-8") as file:
+        for line in full_queens:
+            # i += 1
+            # print(i, end="\t", file=file)
+            print(" ".join([convert_coordinates(item) for item in line]), file=file)
+
+    print(f"Выполнено для {i}x{i} и {i} ферзей")
 
 print("Программа завершена.")
