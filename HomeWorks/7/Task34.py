@@ -15,19 +15,4 @@ input_text = "пара-ра-рам рам-пам-папам"
 
 phrases = input_text.lower().split()
 
-# в начале решил сделать через словарь
-dict_ = {}
-for phrase in phrases:
-    dict_[phrase] = 0
-    letters = set(phrase.replace("-", ""))
-
-    for letter in letters:
-        if letter in alphabet:
-            dict_[phrase] = phrase.count(letter)
-
-list1 = set([el[1] for el in dict_.items()])
-print(not bool(len(list1) - 1))
-
-# в одну строку когда узнал что sum bool дает количество true
 print(not bool(len(set([sum(letter in alphabet for letter in phrase) for phrase in phrases])) - 1))
-

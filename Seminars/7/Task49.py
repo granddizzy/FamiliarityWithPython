@@ -22,21 +22,6 @@ from math import pi
 
 
 def find_farthest_orbit(list_of_orbits: list) -> tuple:
-    max_orbit = tuple()
-    max_square = 0
-    for orbit in list_of_orbits:
-        if orbit[0] == orbit[1]:
-            continue
-
-        square = round(pi * orbit[0] / 2 * orbit[1] / 2, 2)
-        if square > max_square:
-            max_square = square
-            max_orbit = orbit
-
-    return max_orbit
-
-
-def find_farthest_orbit2(list_of_orbits: list) -> tuple:
     dict_ = {orbit: round(pi * orbit[0] / 2 * orbit[1] / 2, 2) for orbit in
              filter(lambda orbit: orbit[0] != orbit[1], list_of_orbits)}
 
@@ -44,5 +29,4 @@ def find_farthest_orbit2(list_of_orbits: list) -> tuple:
 
 
 orbits = [(1, 3), (2.5, 10), (7, 2), (6, 6), (4, 3)]
-# print(*find_farthest_orbit(orbits))
-print(*find_farthest_orbit2(orbits))
+print(*find_farthest_orbit(orbits))
