@@ -17,16 +17,46 @@
 # большую площадь эллипса, а затем найти и сам эллипс,
 # имеющий такую площадь. Гарантируется, что самая далекая
 # планета ровно одна
-
+import random
 from math import pi
 
 
-def find_farthest_orbit(list_of_orbits: list) -> tuple:
-    dict_ = {orbit: round(pi * orbit[0] / 2 * orbit[1] / 2, 2) for orbit in
+def find_farthest_orbit(list_of_orbits: list) -> dict:
+    dict_ = {round(pi * orbit[0] / 2 * orbit[1] / 2, 2): orbit for orbit in
              filter(lambda orbit: orbit[0] != orbit[1], list_of_orbits)}
 
-    return max(dict_, key=lambda k: dict_[k])
+    # return max(dict_, key=lambda k: dict_[k])
+    return dict_
 
 
-orbits = [(1, 3), (2.5, 10), (7, 2), (6, 6), (4, 3)]
-print(*find_farthest_orbit(orbits))
+def find_farthest_orbit2(list_of_orbits: list) -> list:
+    ellipse_orbits = list(filter(lambda orbit: orbit[0] != orbit[1], list_of_orbits))
+    square = list(map(lambda orbit: round(pi * orbit[0] / 2 * orbit[1] / 2, 2), ellipse_orbits))
+    orbits_data = list(zip(ellipse_orbits, square))
+
+    return max(orbits_data, key=lambda x: x[1])
+
+
+num = int(input("Введите количество планет:"))
+orbits = [(random.randint(1, 10), random.randint(1, 10)) for i in range(num)]
+print(orbits)
+
+print(*find_farthest_orbit2(orbits))
+
+
+# dict_p = find_farthest_orbit(orbits)
+# print(max(dict_p), dict_p[max(dict_p)])
+
+
+def find_farthest_orbit3(lst):
+    return max(list(map(lambda item: (item, round(pi * item[0] / 2 * item[1] / 2, 2)),
+                        list(filter(lambda item: item[0] != item[1], lst)))), key=lambda x: x[1])
+
+
+print(find_farthest_orbit3(orbits))
+
+print(max(map(lambda item: (item, item[0] * item[1]), filter(lambda item: item[0] != item[1],
+                                                             orbits1 := [(random.randint(1, 10), random.randint(1, 10))
+                                                                         for _ in
+                                                                         range(int(input("Введите колво планет: ")))])),
+          key=lambda item: item[1]), orbits1)

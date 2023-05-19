@@ -9,10 +9,11 @@
 # Ввод: Вывод:
 # пара-ра-рам рам-пам-папам па-ра-па-дам Парам пам-пам
 
-alphabet = "аеёиоуыэюя"
+vowels = "аеёиоуыэюя"
 
-input_text = "пара-ра-рам рам-пам-папам"
+# input_text = input("Введите фразу: ")
+input_text = "пара-ра-рам рам-пам-папам па-ра-па-дам парам-пам-пам"
 
-phrases = input_text.lower().split()
+phrases = input_text.lower().strip().split()
 
-print(not bool(len(set([sum(letter in alphabet for letter in phrase) for phrase in phrases])) - 1))
+print(len(set([sum(letter in vowels for letter in phrase) for phrase in phrases])) == 1)
